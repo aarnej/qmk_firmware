@@ -24,12 +24,22 @@ enum planck_layers {
 #define NEXT_TRACK KC_MEDIA_NEXT_TRACK
 #define PAUSE KC_MEDIA_PLAY_PAUSE
 
+enum {
+    TD_ESC_Q,
+};
+
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_ESC_Q] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_planck_grid(
-        KC_ESCAPE,      KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           SE_ADIA,
-        KC_TAB,         KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_H,           KC_J,           KC_K,           KC_L,           SE_SCLN,        SE_OSLH,
-        KC_LEFT_SHIFT,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         SE_SLSH,        KC_RIGHT_SHIFT,
-        CW_TOGG,        KC_LEFT_GUI,    KC_LEFT_ALT,    KC_LEFT_CTRL,   RAISE,          KC_SPACE,       XXXXXXX,        LOWER,          KC_LEFT_CTRL,   KC_LEFT_ALT,    MO(_EXTRA),     KC_ENTER),
+        XXXXXXX,        TD(TD_ESC_Q),   KC_W,           KC_E,           KC_R,           KC_T,           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           SE_ADIA,
+        KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,           KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   SE_SCLN,        SE_OSLH,
+        XXXXXXX,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         SE_SLSH,        XXXXXXX,
+        CW_TOGG,        XXXXXXX,        XXXXXXX,        XXXXXXX,        RAISE,          KC_SPACE,       XXXXXXX,        LOWER,          XXXXXXX,        XXXXXXX,        MO(_EXTRA),     KC_ENTER),
 
     [_LOWER] = LAYOUT_planck_grid(
         HYPER(KC_1),    KC_1,           KC_2,           KC_3,           KC_4,           HYPER(KC_A),    HYPER(KC_D),    KC_PAGE_UP,     KC_UP,          KC_HOME,        KC_SCRL,        HYPER(KC_3),
@@ -56,10 +66,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         SLEEP,          XXXXXXX,        _______,        _______,        _______,        _______,        XXXXXXX,        _______,        _______,        _______,        _______,        _______),
 
     [_GAMING] = LAYOUT_planck_grid(
-        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
-        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
-        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
-        _______,        _______,        _______,        _______,        LOWER,          _______,        XXXXXXX,        RAISE,          _______,        _______,        _______,        _______),
+        KC_ESCAPE,      KC_Q,           _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,
+        _______,        KC_A,           KC_S,           KC_D,           KC_F,           _______,        _______,        KC_J,           KC_K,           KC_L,           _______,        _______,
+        KC_LEFT_SHIFT,  _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        KC_RIGHT_SHIFT,
+        _______,        KC_LEFT_GUI,    KC_LEFT_ALT,    KC_LEFT_CTRL,   LOWER,          _______,        XXXXXXX,        RAISE,          KC_LEFT_CTRL,   KC_LEFT_ALT,    _______,        _______),
 
 };
 
