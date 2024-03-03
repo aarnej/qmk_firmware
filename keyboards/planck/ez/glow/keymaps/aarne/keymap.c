@@ -8,10 +8,10 @@ enum planck_keycodes {
 
 enum planck_layers {
     _BASE,
-    _GAMING,
+    _GAME,
     _LOWER,
     _RAISE,
-    _ADJUST,
+    _ADJ,
     _EXTRA,
 };
 
@@ -53,17 +53,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_planck_grid(
         KC_ESC,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,            ADIA,
         KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,           KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
-        XXXXXXX,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLSH,         XXXXXXX,
-        CW_TOGG,        COPY,           CUT,            PASTE,          RAISE,          KC_SPACE,       XXXXXXX,        LOWER,          XXXXXXX,        XXXXXXX,        MO(_EXTRA),      KC_ENTER),
+        KC_INS,         KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLSH,         XXXXXXX,
+        CW_TOGG,        COPY,           CUT,            PASTE,          RAISE,          KC_SPC,         XXXXXXX,        LOWER,          XXXXXXX,        XXXXXXX,        MO(_EXTRA),      KC_ENT),
 
-    [_GAMING] = LAYOUT_planck_grid(
-        KC_ESCAPE,      KC_Q,           _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,         _______,
+    [_GAME] = LAYOUT_planck_grid(
+        KC_ESC,         KC_Q,           _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,         _______,
         _______,        KC_A,           KC_S,           KC_D,           KC_F,           _______,        _______,        KC_J,           KC_K,           KC_L,           _______,         _______,
-        KC_LEFT_SHIFT,  _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,         KC_RIGHT_SHIFT,
-        _______,        KC_LEFT_GUI,    KC_LEFT_ALT,    KC_LEFT_CTRL,   LOWER,          _______,        XXXXXXX,        RAISE,          KC_LEFT_CTRL,   KC_LEFT_ALT,    _______,         _______),
+        KC_LSFT,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,        _______,         KC_RSFT,
+        _______,        KC_LGUI,        KC_LALT,        KC_LCTL,        LOWER,          _______,        XXXXXXX,        RAISE,          KC_LCTL,        KC_LALT,        _______,         _______),
 
     [_LOWER] = LAYOUT_planck_grid(
-        HYPR(KC_1),     KC_1,           KC_2,           KC_3,           KC_4,           HYPR(KC_A),     HYPR(KC_D),     KC_PAGE_UP,     KC_UP,          KC_HOME,        KC_SCRL,         HYPR(KC_3),
+        HYPR(KC_1),     KC_1,           KC_2,           KC_3,           KC_4,           HYPR(KC_A),     HYPR(KC_D),     KC_PGUP,        KC_UP,          KC_HOME,        KC_SCRL,         HYPR(KC_3),
         HYPR(KC_2),     KC_5,           KC_6,           KC_7,           KC_8,           HYPR(KC_B),     HYPR(KC_E),     KC_LEFT,        KC_DOWN,        KC_RIGHT,       XXXXXXX,         HYPR(KC_4),
         _______,        KC_J,           KC_K,           KC_9,           KC_0,           HYPR(KC_C),     HYPR(KC_F),     KC_PGDN,        XXXXXXX,        KC_END,         XXXXXXX,         _______,
         _______,        _______,        _______,        _______,        _______,        KC_BSPC,        XXXXXXX,        _______,        _______,        _______,        _______,         _______),
@@ -74,14 +74,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,        KC_GRV,         KC_PIPE,        KC_LBRC,        KC_RBRC,        ARING,          XXXXXXX,        KC_BSLS,        KC_LT,          KC_GT,          KC_QUES,         _______,
         _______,        _______,        _______,        _______,        _______,        KC_DELETE,      XXXXXXX,        _______,        _______,        _______,        _______,         _______),
 
-    [_ADJUST] = LAYOUT_planck_grid(
-        _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_UP,       XXXXXXX,        XXXXXXX,         _______,
-        _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_MS_WH_UP,     _______,
-        _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_BTN1,     KC_MS_BTN3,     KC_MS_BTN2,     KC_MS_WH_DOWN,   _______,
+    [_ADJ] = LAYOUT_planck_grid(
+        _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_U,        XXXXXXX,        XXXXXXX,         _______,
+        _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_L,        KC_MS_D,        KC_MS_R,        KC_WH_U,         _______,
+        _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_BTN1,        KC_BTN3,        KC_BTN2,        KC_WH_D,         _______,
         _______,        _______,        _______,        _______,        _______,        _______,        XXXXXXX,        _______,        _______,        _______,        _______,         _______),
 
     [_EXTRA] = LAYOUT_planck_grid(
-        _______,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          XXXXXXX,        TG(_GAMING),    XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,         QK_BOOT,
+        _______,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          XXXXXXX,        TG(_GAME),      XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,         QK_BOOT,
         _______,        KC_F5,          KC_F6,          KC_F7,          KC_F8,          XXXXXXX,        LED_LEVEL,      XXXXXXX,        RGB_VAD,        RGB_VAI,        XXXXXXX,         _______,
         _______,        KC_F9,          KC_F10,         KC_F11,         KC_F12,         XXXXXXX,        XXXXXXX,        PREV_TRACK,     PAUSE,          NEXT_TRACK,     XXXXXXX,         _______,
         SLEEP,          XXXXXXX,        _______,        _______,        _______,        _______,        XXXXXXX,        _______,        _______,        _______,        _______,         _______),
@@ -101,7 +101,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},           {145, 255, 64},           {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64}
         },
 
-    [_GAMING] = {
+    [_GAME] = {
         {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},    {93, 208, 71},   {74, 255, 255},  {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},
         {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 255},   {93, 208, 71},   {93, 208, 71},   {93, 208, 255},  {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},
         {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},    {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},   {93, 208, 71},
@@ -122,7 +122,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         {0, 0, 0},       {0, 0, 0},       {0, 0, 0},       {0, 0, 0},       {0, 0, 0},                  {0, 0, 0},              {0, 0, 0},       {0, 0, 0},       {0, 0, 0},       {0, 0, 0},       {0, 0, 0}
         },
 
-    [_ADJUST] = {
+    [_ADJ] = {
         {0,0,0},         {0,0,0},         {0,0,0},         {0,0,0},         {0,0,0},           {0,0,0},         {0,0,0},        {0,0,0},         {14,255,255},    {0,0,0},        {0,0,0},         {0,0,0},
         {0,0,0},         {0,0,0},         {0,0,0},         {0,0,0},         {0,0,0},           {0,0,0},         {0,0,0},        {14,255,255},    {14,255,255},    {14,255,255},   {249,228,255},   {0,0,0},
         {0,0,0},         {0,0,0},         {0,0,0},         {0,0,0},         {0,0,0},           {0,0,0},         {0,0,0},        {105,255,255},   {105,255,255},   {105,255,255},  {249,228,255},   {0,0,0},
@@ -202,7 +202,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 uint8_t layer_state_set_user(uint8_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJ);
 }
 
 bool caps_word_press_user(uint16_t keycode) {
