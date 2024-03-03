@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_planck_grid(
         KC_ESC,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,            ADIA,
         KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,           KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
-        KC_INS,         KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLSH,         XXXXXXX,
+        KC_INS,         KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_N,           KC_M,           KC_COMM,       KC_DOT,         KC_SLSH,         XXXXXXX,
         CW_TOGG,        COPY,           CUT,            PASTE,          RAISE,          KC_SPC,         XXXXXXX,        LOWER,          XXXXXXX,        XXXXXXX,        MO(_EXTRA),      KC_ENT),
 
     [_GAME] = LAYOUT_planck_grid(
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         HYPR(KC_5),     KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_DQUO,        KC_QUOTE,        HYPR(KC_7),
         HYPR(KC_6),     KC_TILD,        KC_UNDS,        KC_LPRN,        KC_RPRN,        KC_PLUS,        KC_EQL,         KC_LCBR,        KC_RCBR,        KC_MINS,        KC_COLN,         HYPR(KC_8),
         _______,        KC_GRV,         KC_PIPE,        KC_LBRC,        KC_RBRC,        ARING,          XXXXXXX,        KC_BSLS,        KC_LT,          KC_GT,          KC_QUES,         _______,
-        _______,        _______,        _______,        _______,        _______,        KC_DELETE,      XXXXXXX,        _______,        _______,        _______,        _______,         _______),
+        _______,        _______,        _______,        _______,        _______,        KC_DEL,         XXXXXXX,        _______,        _______,        _______,        _______,         _______),
 
     [_ADJ] = LAYOUT_planck_grid(
         _______,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        KC_MS_U,        XXXXXXX,        XXXXXXX,         _______,
