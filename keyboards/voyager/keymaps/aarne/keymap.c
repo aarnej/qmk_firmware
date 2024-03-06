@@ -1,72 +1,209 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "i18n.h"
 #define MOON_LED_LEVEL LED_LEVEL
 
-enum custom_keycodes {
-  RGB_SLD = ML_SAFE_RANGE,
-  HSV_0_255_255,
-  HSV_74_255_255,
-  HSV_169_255_255,
+enum planck_layers {
+    _BASE,
+    _GAME,
+    _LOWER,
+    _RAISE,
+    _ADJ,
 };
 
+#define LOWER MO(_LOWER)
+#define RAISE MO(_RAISE)
+
+#define SLEEP KC_SYSTEM_SLEEP
+#define PREV_TRACK KC_MEDIA_PREV_TRACK
+#define NEXT_TRACK KC_MEDIA_NEXT_TRACK
+#define PAUSE KC_MEDIA_PLAY_PAUSE
+
+enum {
+    ADIA_LOWER,
+    ADIA_UPPER,
+    ODIA_LOWER,
+    ODIA_UPPER,
+    ARING_LOWER,
+    ARING_UPPER,
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [ADIA_LOWER] = 0xe4,
+    [ADIA_UPPER] = 0xc3,
+    [ODIA_LOWER] = 0xf6,
+    [ODIA_UPPER] = 0xd6,
+    [ARING_LOWER] = 0xe5,
+    [ARING_UPPER] = 0xc5
+};
+
+#define ADIA UP(ADIA_LOWER, ADIA_UPPER)
+#define ODIA UP(ODIA_LOWER, ODIA_UPPER)
+#define ARING UP(ARING_LOWER, ARING_UPPER)
+
+#define COPY C(KC_C)
+#define CUT C(KC_X)
+#define PASTE C(S(KC_V))
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_voyager(
-    KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_TRANSPARENT, 
-    KC_ESCAPE,      KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,        
-    KC_TAB,         MT(MOD_LGUI, KC_A),MT(MOD_LALT, KC_S),MT(MOD_LCTL, KC_D),MT(MOD_LSFT, KC_F),KC_G,                                           KC_H,           MT(MOD_LSFT, KC_J),MT(MOD_LCTL, KC_K),MT(MOD_LALT, KC_L),MT(MOD_LGUI, KC_SCLN),KC_ENTER,       
-    CW_TOGG,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         MT(MOD_RALT, KC_SLASH),KC_TRANSPARENT, 
-                                                    LT(1,KC_ENTER), MT(MOD_LCTL, KC_TAB),                                MT(MOD_LSFT, KC_BSPC),LT(2,KC_SPACE)
+  [_BASE] = LAYOUT_voyager(
+    COPY,           CUT,            PASTE,          _______,        _______,        KC_INS,                _______,        _______,        _______,        _______,        _______,         _______,
+    KC_ESC,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                  KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,            ADIA,
+    KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,                  KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
+    CW_TOGG,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                  KC_N,           KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,         KC_ENT,
+                                                                       KC_SPC,         RAISE,          LOWER,          KC_BSPC
   ),
-  [1] = LAYOUT_voyager(
-    KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         
-    KC_GRAVE,       KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,                                        KC_7,           KC_8,           KC_9,           KC_MINUS,       KC_SLASH,       KC_F12,         
-    KC_TRANSPARENT, KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RPRN,                                        KC_4,           KC_5,           KC_6,           KC_PLUS,        KC_ASTR,        KC_BSPC,        
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_LBRC,        KC_RBRC,        KC_LCBR,        KC_RCBR,                                        KC_1,           KC_2,           KC_3,           KC_DOT,         KC_EQUAL,       KC_ENTER,       
-                                                    KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_0
+  [_GAME] = LAYOUT_voyager(
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
+    KC_ESC,         KC_Q,           _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
+    _______,        KC_A,           KC_S,           KC_D,           KC_F,           _______,               _______,        KC_J,           KC_K,           KC_L,           _______,         _______,
+    KC_LSFT,        KC_LGUI,        KC_LALT,        KC_LCTL,        _______,        _______,               _______,        _______,        KC_LCTL,        KC_LALT,        _______,         KC_RSFT,
+                                                                      _______,        LOWER,          RAISE,          _______
   ),
-  [2] = LAYOUT_voyager(
-    RGB_TOG,        TOGGLE_LAYER_COLOR,RGB_MODE_FORWARD,RGB_SLD,        RGB_VAD,        RGB_VAI,                                        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, QK_BOOT,        
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_AUDIO_MUTE,  KC_TRANSPARENT,                                 KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE,KC_TRANSPARENT,                                 KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,                                KC_TRANSPARENT, LCTL(LSFT(KC_TAB)),LCTL(KC_TAB),   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-                                                    KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
+  [_LOWER] = LAYOUT_voyager(
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
+    HYPR(KC_1),     KC_1,           KC_2,           KC_3,           KC_4,           HYPR(KC_A),            HYPR(KC_D),     KC_PGUP,        KC_UP,          KC_HOME,        KC_SCRL,         HYPR(KC_3),
+    HYPR(KC_2),     KC_5,           KC_6,           KC_7,           KC_8,           HYPR(KC_B),            HYPR(KC_E),     KC_LEFT,        KC_DOWN,        KC_RIGHT,       XXXXXXX,         HYPR(KC_4),
+    _______,        KC_J,           KC_K,           KC_9,           KC_0,           HYPR(KC_C),            HYPR(KC_F),     KC_PGDN,        XXXXXXX,        KC_END,         XXXXXXX,         _______,
+                                                                       _______,        _______,        _______,        _______
+  ),
+  [_RAISE] = LAYOUT_voyager(
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
+    HYPR(KC_5),     KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,               KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_DQUO,        KC_QUOTE,        HYPR(KC_7),
+    HYPR(KC_6),     KC_TILD,        KC_UNDS,        KC_LPRN,        KC_RPRN,        KC_PLUS,               KC_EQL,         KC_LCBR,        KC_RCBR,        KC_MINS,        KC_COLN,         HYPR(KC_8),
+    _______,        KC_GRV,         KC_PIPE,        KC_LBRC,        KC_RBRC,        ARING,                 XXXXXXX,        KC_BSLS,        KC_LT,          KC_GT,          KC_QUES,         _______,
+                                                                      _______,        _______,         _______,        _______
+  ),
+  [_ADJ] = LAYOUT_voyager(
+    XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,               XXXXXXX,        LED_LEVEL,      RGB_VAD,        RGB_VAI,        XXXXXXX,         QK_BOOT,
+    XXXXXXX,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          XXXXXXX,               XXXXXXX,        XXXXXXX,        KC_MS_U,        XXXXXXX,        XXXXXXX,         TG(_GAME),
+    XXXXXXX,        KC_F5,          KC_F6,          KC_F7,          KC_F8,          XXXXXXX,               XXXXXXX,        KC_MS_L,        KC_MS_D,        KC_MS_R,        KC_WH_U,         XXXXXXX,
+    XXXXXXX,        KC_F9,          KC_F10,         KC_F11,         KC_F12,         XXXXXXX,               XXXXXXX,        KC_BTN1,        KC_BTN3,        KC_BTN2,        KC_WH_D,         XXXXXXX,
+                                                                      XXXXXXX,        XXXXXXX,         XXXXXXX,        XXXXXXX
   ),
 };
 
 
 
+extern rgb_config_t rgb_matrix_config;
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
+void keyboard_post_init_user(void) {
+  rgb_matrix_enable();
+}
 
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-    case HSV_0_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(0,255,255);
-      }
-      return false;
-    case HSV_74_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(74,255,255);
-      }
-      return false;
-    case HSV_169_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(169,255,255);
-      }
-      return false;
+const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
+    [_BASE] = {
+        {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},   {145, 255, 64},
+        {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},   {145, 255, 64},
+        {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 255},  {145, 255, 64},
+        {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},   {145, 255, 64},
+                                                                                 {145, 255, 64},   {145, 255, 64},
+
+           {145, 255, 64},  {145, 255, 64},   {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},
+           {145, 255, 64},  {145, 255, 64},   {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},
+           {145, 255, 64},  {145, 255, 255},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},
+           {145, 255, 64},  {145, 255, 64},   {145, 255, 64},  {145, 255, 64},  {145, 255, 64},  {145, 255, 64},
+        {145, 255, 64},  {145, 255, 64}
+    },
+    [_GAME] = {
+        {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},   {170, 255, 64},
+        {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},   {170, 255, 64},
+        {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 255},  {170, 255, 64},
+        {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},   {170, 255, 64},
+                                                                                 {170, 255, 64},   {170, 255, 64},
+
+           {170, 255, 64},  {170, 255, 64},   {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},
+           {170, 255, 64},  {170, 255, 64},   {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},
+           {170, 255, 64},  {170, 255, 255},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},
+           {170, 255, 64},  {170, 255, 64},   {170, 255, 64},  {170, 255, 64},  {170, 255, 64},  {170, 255, 64},
+        {170, 255, 64},  {170, 255, 64}
+    },
+    [_LOWER] = {
+        {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},   {190, 255, 64},
+        {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},   {190, 255, 64},
+        {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 255},  {190, 255, 64},
+        {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},   {190, 255, 64},
+                                                                                 {190, 255, 64},   {190, 255, 64},
+
+           {190, 255, 64},  {190, 255, 64},   {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},
+           {190, 255, 64},  {190, 255, 64},   {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},
+           {190, 255, 64},  {190, 255, 255},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},
+           {190, 255, 64},  {190, 255, 64},   {190, 255, 64},  {190, 255, 64},  {190, 255, 64},  {190, 255, 64},
+        {190, 255, 64},  {190, 255, 64}
+    },
+    [_RAISE] = {
+        {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},   {210, 255, 64},
+        {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},   {210, 255, 64},
+        {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 255},  {210, 255, 64},
+        {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},   {210, 255, 64},
+                                                                                 {210, 255, 64},   {210, 255, 64},
+
+           {210, 255, 64},  {210, 255, 64},   {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},
+           {210, 255, 64},  {210, 255, 64},   {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},
+           {210, 255, 64},  {210, 255, 255},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},
+           {210, 255, 64},  {210, 255, 64},   {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},
+        {210, 255, 64},  {210, 255, 64}
+    },
+    [_ADJ] = {
+        {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},   {230, 255, 64},
+        {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},   {230, 255, 64},
+        {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 255},  {230, 255, 64},
+        {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},   {230, 255, 64},
+                                                                                 {230, 255, 64},   {230, 255, 64},
+
+           {230, 255, 64},  {230, 255, 64},   {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},
+           {230, 255, 64},  {230, 255, 64},   {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},
+           {230, 255, 64},  {230, 255, 255},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},
+           {230, 255, 64},  {230, 255, 64},   {230, 255, 64},  {230, 255, 64},  {230, 255, 64},  {230, 255, 64},
+        {230, 255, 64},  {230, 255, 64}
+    },
+};
+
+uint8_t layer_state_set_user(uint8_t state) {
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJ);
+}
+
+void set_layer_color(int layer) {
+  for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
+    HSV hsv = {
+      .h = pgm_read_byte(&ledmap[layer][i][0]),
+      .s = pgm_read_byte(&ledmap[layer][i][1]),
+      .v = pgm_read_byte(&ledmap[layer][i][2]),
+    };
+    if (!hsv.h && !hsv.s && !hsv.v) {
+        rgb_matrix_set_color( i, 0, 0, 0 );
+    } else {
+        RGB rgb = hsv_to_rgb( hsv );
+        float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
+        rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );
+    }
   }
+}
+
+bool rgb_matrix_indicators_user(void) {
+  if (keyboard_config.disable_layer_led) { return false; }
+  set_layer_color(biton32(layer_state));
   return true;
 }
 
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
+            return true;
 
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        case SE_UNDS:
+            return true;
 
+        default:
+            return false; // Deactivate Caps Word.
+    }
+}
