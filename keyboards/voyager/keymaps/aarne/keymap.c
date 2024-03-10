@@ -47,7 +47,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_voyager(
-    COPY,           CUT,            PASTE,          _______,        _______,        KC_INS,                TG(_GAME),      _______,        _______,        KC_F2,          KC_F5,           KC_F12,
+    _______,        _______,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      _______,        _______,        KC_F2,          KC_F5,           KC_F12,
     KC_ESC,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                  KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,            ADIA,
     KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   LT(_ADJ, KC_G),        LT(_ADJ, KC_H), LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
     CW_TOGG,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                  KC_N,           KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,         _______,
@@ -65,14 +65,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     HYPR(KC_1),     KC_1,           KC_2,           KC_3,           KC_4,           HYPR(KC_A),            HYPR(KC_D),     KC_PGUP,        KC_UP,          KC_HOME,        KC_SCRL,         HYPR(KC_3),
     KC_LALT,        KC_5,           KC_6,           KC_7,           KC_8,           HYPR(KC_B),            HYPR(KC_E),     KC_LEFT,        KC_DOWN,        KC_RIGHT,       XXXXXXX,         HYPR(KC_4),
     _______,        KC_J,           KC_K,           KC_9,           KC_0,           HYPR(KC_C),            HYPR(KC_F),     KC_PGDN,        XXXXXXX,        KC_END,         XXXXXXX,         _______,
-                                                                       _______,        KC_DEL,        _______,        _______
+                                                                       _______,        _______,        _______,        _______
   ),
   [_RAISE] = LAYOUT_voyager(
     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
     HYPR(KC_5),     KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,               KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_DQUO,        KC_QUOTE,        HYPR(KC_7),
     HYPR(KC_6),     KC_TILD,        KC_UNDS,        KC_LPRN,        KC_RPRN,        KC_PLUS,               KC_EQL,         KC_LCBR,        KC_RCBR,        KC_MINS,        KC_COLN,         HYPR(KC_8),
     _______,        KC_GRV,         KC_PIPE,        KC_LBRC,        KC_RBRC,        ARING,                 XXXXXXX,        KC_BSLS,        KC_LT,          KC_GT,          KC_QUES,         _______,
-                                                                      _______,        _______,         KC_BSPC,        _______
+                                                                      _______,        _______,         KC_BSPC,        KC_DEL
   ),
   [_ADJ] = LAYOUT_voyager(
     XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,        XXXXXXX,               XXXXXXX,        LED_LEVEL,      RGB_VAD,        RGB_VAI,        XXXXXXX,         QK_BOOT,
