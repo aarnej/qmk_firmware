@@ -10,10 +10,7 @@
 #define RAW_USAGE_ID 0x61
 #define LAYER_STATE_8BIT
 
-#define MK_3_SPEED
-#define MK_MOMENTARY_ACCEL
-#define MK_C_OFFSET_0 4
-#define MK_C_OFFSET_UNMOD 40
+#define MK_COMBINED
 
 #define RGB_MATRIX_STARTUP_SPD 60
 
