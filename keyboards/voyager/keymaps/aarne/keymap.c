@@ -50,14 +50,14 @@ const uint32_t PROGMEM unicode_map[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_voyager(
-    _______,        _______,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      _______,        _______,        KC_F2,          KC_F5,           KC_F12,
+    _______,        KC_CAPS,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      _______,        _______,        KC_F2,          KC_F5,           KC_F12,
     KC_ESC,         KC_Q,           KC_W,           KC_E,           LT(_ADJ, KC_R), KC_T,                  KC_Y,           LT(_ADJ, KC_U), KC_I,           KC_O,           KC_P,            ADIA,
     KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,                  KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
     CW_TOGG,        KC_Z,           KC_X,           KC_C,         LT(_EXTRA, KC_V), KC_B,                  KC_N,         LT(_EXTRA, KC_M), KC_COMM,        KC_DOT,         KC_SLSH,         _______,
                                                                        RAISE,         KC_SPC,         KC_ENT,      LOWER
   ),
   [_GAME] = LAYOUT_voyager(
-    KC_ESC,         KC_GRV,         KC_CAPS,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
+    KC_ESC,         _______,        KC_GRV,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
     KC_TAB,         _______,        _______,        _______,        KC_R,           _______,               _______,        KC_U,           _______,        _______,        _______,         _______,
     KC_LSFT,        KC_A,           KC_S,           KC_D,           KC_F,           _______,               _______,        KC_J,           KC_K,           KC_L,           KC_SCLN,         _______,
     KC_LCTL,        _______,        _______,        _______,        KC_V,           _______,               _______,        KC_M,           _______,        _______,        _______,         _______,
