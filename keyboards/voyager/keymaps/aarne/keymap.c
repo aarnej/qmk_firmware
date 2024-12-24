@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,        KC_F1,          KC_F2,          KC_F3,          KC_F4,          XXXXXXX,               XXXXXXX,        KC_WH_U,        KC_MS_U,        KC_WH_D,        XXXXXXX,         XXXXXXX,
     XXXXXXX,        KC_F5,          KC_F6,          KC_F7,          KC_F8,          XXXXXXX,               XXXXXXX,        KC_MS_L,        KC_MS_D,        KC_MS_R,        XXXXXXX,         XXXXXXX,
     XXXXXXX,        KC_F9,          KC_F10,         KC_F11,         KC_F12,         XXXXXXX,               XXXXXXX,        HYPR(KC_G),     XXXXXXX,        XXXXXXX,        VOL_DN,          VOL_UP,
-                                                                      KC_ACL0,         XXXXXXX,         KC_BTN1,        KC_BTN2
+                                                                      KC_ACL0,         KC_ACL2,         KC_BTN1,        KC_BTN2
   ),
   [_EXTRA] = LAYOUT_voyager(
     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,

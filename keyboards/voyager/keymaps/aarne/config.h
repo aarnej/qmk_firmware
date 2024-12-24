@@ -10,8 +10,6 @@
 #define RAW_USAGE_ID 0x61
 #define LAYER_STATE_8BIT
 
-#define MK_COMBINED
-
 #define RGB_MATRIX_STARTUP_SPD 60
 
 #define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE
@@ -20,6 +18,9 @@
 #define TAPPING_TERM 150
 #define PERMISSIVE_HOLD
 
+// Mousekeys
+
+#define MK_COMBINED
 
 #undef MOUSEKEY_DELAY
 #define MOUSEKEY_DELAY          0
