@@ -54,7 +54,7 @@ const uint32_t PROGMEM unicode_map[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_voyager(
     _______,        KC_CAPS,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      _______,        _______,        KC_F2,          KC_F5,           KC_F12,
-    KC_ESC,         KC_Q,           KC_W,           LT(_ADJ, KC_E), KC_R,           KC_T,                  KC_Y,           LT(_ADJ, KC_U), KC_I,           KC_O,           KC_P,            ADIA,
+    KC_ESC,         KC_Q,           KC_W,           LT(_ADJ, KC_E), KC_R,           KC_T,                  KC_Y,           KC_U,           LT(_ADJ, KC_I), KC_O,           KC_P,            ADIA,
     KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,                  KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
     CW_TOGG,        KC_Z,           KC_X,           LT(_EXTRA,KC_C),KC_V,           KC_B,                  KC_N,         LT(_EXTRA, KC_M), KC_COMM,        KC_DOT,         KC_SLSH,         _______,
                                                                        RAISE,         KC_SPC,         KC_ENT,      LOWER
