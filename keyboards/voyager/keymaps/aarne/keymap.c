@@ -1,14 +1,17 @@
 #include QMK_KEYBOARD_H
+#include "keymap_finnish.h"
 #include "version.h"
 #include "i18n.h"
 #define MOON_LED_LEVEL LED_LEVEL
 
 enum planck_layers {
     _BASE,
+    _BASEFI,
     _GAME,
     _GAMERT,
     _LOWER,
     _RAISE,
+    _RAISEFI,
     _ADJ,
     _EXTRA
 };
@@ -42,6 +45,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define RAISEFI MO(_RAISEFI)
 #define GAMERT MO(_GAMERT)
 
 #define COPY C(KC_C)
@@ -53,11 +57,18 @@ const uint32_t PROGMEM unicode_map[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_voyager(
-    _______,        KC_CAPS,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      _______,        _______,        KC_F2,          KC_F5,           KC_F12,
+    _______,        KC_CAPS,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      UC_NEXT,        TG(_BASEFI),    KC_F2,          KC_F5,           KC_F12,
     KC_ESC,         KC_Q,           KC_W,           LT(_ADJ, KC_E), KC_R,           KC_T,                  KC_Y,           KC_U,           LT(_ADJ, KC_I), KC_O,           KC_P,            ADIA,
     KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,                  KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
     CW_TOGG,        KC_Z,           KC_X,           LT(_EXTRA,KC_C),KC_V,           KC_B,                  KC_N,         LT(_EXTRA, KC_M), KC_COMM,        KC_DOT,         KC_SLSH,         _______,
                                                                        RAISE,         KC_SPC,         KC_ENT,      LOWER
+  ),
+  [_BASEFI] = LAYOUT_voyager(
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         FI_ADIA,
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        KC_LGUI,         FI_ODIA,
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        FI_SLSH,         FI_SCLN,
+                                                                       RAISEFI,       _______,        _______,        _______
   ),
   [_GAME] = LAYOUT_voyager(
     KC_ESC,         _______,        KC_GRV,         KC_HOME,        KC_END,         _______,               _______,        KC_PGUP,        KC_PGDN,        _______,        _______,         _______,
@@ -82,9 +93,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_RAISE] = LAYOUT_voyager(
     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
-    HYPR(KC_5),     KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,               KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_DQUO,        KC_QUOTE,        HYPR(KC_7),
+    HYPR(KC_5),     KC_EXLM,        KC_AT,          KC_HASH,        KC_DLR,         KC_PERC,               KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_DQUO,        KC_QUOT,         HYPR(KC_7),
     HYPR(KC_6),     KC_TILD,        KC_UNDS,        KC_LPRN,        KC_RPRN,        KC_PLUS,               KC_EQL,         KC_LCBR,        KC_RCBR,        KC_MINS,        KC_COLN,         HYPR(KC_8),
-    _______,        KC_GRV,         KC_PIPE,        KC_LBRC,        KC_RBRC,        ARING,                 XXXXXXX,        KC_BSLS,        KC_LT,          KC_GT,          KC_QUES,         _______,
+    _______,        KC_GRV,         KC_PIPE,        KC_LBRC,        KC_RBRC,        ARING,                 XXXXXXX,        KC_BSLS,        KC_LABK,        KC_RABK,        KC_QUES,         _______,
+                                                                      _______,        _______,         KC_BSPC,        KC_DEL
+  ),
+  [_RAISEFI] = LAYOUT_voyager(
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
+    HYPR(KC_5),     FI_EXLM,        FI_AT,          FI_HASH,        FI_DLR,         FI_PERC,               FI_CIRC,        FI_AMPR,        FI_ASTR,        FI_DQUO,        FI_QUOT,         HYPR(KC_7),
+    HYPR(KC_6),     FI_TILD,        FI_UNDS,        FI_LPRN,        FI_RPRN,        FI_PLUS,               FI_EQL,         FI_LCBR,        FI_RCBR,        FI_MINS,        FI_COLN,         HYPR(KC_8),
+    _______,        FI_GRV,         FI_PIPE,        FI_LBRC,        FI_RBRC,        FI_ARNG,               XXXXXXX,        FI_BSLS,        FI_LABK,        FI_RABK,        FI_QUES,         _______,
                                                                       _______,        _______,         KC_BSPC,        KC_DEL
   ),
   [_ADJ] = LAYOUT_voyager(
@@ -120,6 +138,19 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
                                                                                  {140, 255, 64},   {140, 255, 64},
 
            {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+           {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+           {140, 255, 64},  {140, 255, 255},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+           {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+        {140, 255, 64},  {140, 255, 64}
+    },
+    [_BASEFI] = {
+        {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
+        {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
+        {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 255},  {140, 255, 64},
+        {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
+                                                                                 {140, 255, 64},   {140, 255, 64},
+
+           {140, 255, 64},  {140, 255, 64},   {180, 255, 104},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
            {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
            {140, 255, 64},  {140, 255, 255},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
            {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
@@ -165,6 +196,19 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         {40,  255, 64},  {40,  255, 64}
     },
     [_RAISE] = {
+        {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},   {210, 255, 64},
+        {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},   {210, 255, 64},
+        {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 255},  {210, 255, 64},
+        {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},   {210, 255, 64},
+                                                                                 {210, 255, 64},   {210, 255, 64},
+
+           {210, 255, 64},  {210, 255, 64},   {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},
+           {210, 255, 64},  {210, 255, 64},   {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},
+           {210, 255, 64},  {210, 255, 255},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},
+           {210, 255, 64},  {210, 255, 64},   {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},
+        {210, 255, 64},  {210, 255, 64}
+    },
+    [_RAISEFI] = {
         {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},   {210, 255, 64},
         {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},   {210, 255, 64},
         {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 64},  {210, 255, 255},  {210, 255, 64},
@@ -237,6 +281,7 @@ bool caps_word_press_user(uint16_t keycode) {
         // Keycodes that continue Caps Word, with shift applied.
         case KC_A ... KC_Z:
         case KC_MINS:
+        case FI_MINS:
             add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
             return true;
 
@@ -245,7 +290,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_BSPC:
         case KC_DEL:
         case KC_UNDS:
-        case SE_UNDS:
+        case FI_UNDS:
             return true;
 
         default:
