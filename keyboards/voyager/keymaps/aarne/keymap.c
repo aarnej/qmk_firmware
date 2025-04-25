@@ -6,7 +6,8 @@
 
 enum planck_layers {
     _BASE,
-    _BASEFI,
+    // _BASEFI,
+    _BASEL,
     _GAME,
     _GAMERT,
     _LOWER,
@@ -28,6 +29,12 @@ enum {
     ODIA_UPPER,
     ARING_LOWER,
     ARING_UPPER,
+};
+
+enum custom_keycodes {
+  CADIA = SAFE_RANGE,
+  CODIA,
+  CARNG,
 };
 
 const uint32_t PROGMEM unicode_map[] = {
@@ -57,18 +64,25 @@ const uint32_t PROGMEM unicode_map[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_voyager(
-    _______,        KC_CAPS,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      UC_NEXT,        TG(_BASEFI),    KC_F2,          KC_F5,           KC_F12,
+    _______,        KC_CAPS,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      UC_NEXT,        _______,        TG(_BASEL),     _______,         _______,
     KC_ESC,         KC_Q,           KC_W,           LT(_ADJ, KC_E), KC_R,           KC_T,                  KC_Y,           KC_U,           LT(_ADJ, KC_I), KC_O,           KC_P,            ADIA,
     KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,                  KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
-    CW_TOGG,        KC_Z,           KC_X,           LT(_EXTRA,KC_C),KC_V,           KC_B,                  KC_N,         LT(_EXTRA, KC_M), KC_COMM,        KC_DOT,         KC_SLSH,         _______,
+    CW_TOGG,        KC_Z,           KC_X,           LT(_EXTRA,KC_C),KC_V,           KC_B,                  KC_N,         LT(_EXTRA, KC_M), KC_COMM,        KC_DOT,         KC_SLSH,         ARING,
                                                                        RAISE,         KC_SPC,         KC_ENT,      LOWER
   ),
-  [_BASEFI] = LAYOUT_voyager(
+//   [_BASEFI] = LAYOUT_voyager(
+//     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
+//     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         FI_ADIA,
+//     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        KC_LGUI,         FI_ODIA,
+//     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        FI_SLSH,         FI_SCLN,
+//                                                                        RAISEFI,       _______,        _______,        _______
+//   ),
+  [_BASEL] = LAYOUT_voyager(
     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
-    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         FI_ADIA,
-    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        KC_LGUI,         FI_ODIA,
-    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        FI_SLSH,         FI_SCLN,
-                                                                       RAISEFI,       _______,        _______,        _______
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         CADIA,
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         CODIA,
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         CARNG,
+                                                                       _______,          _______,        _______,        _______
   ),
   [_GAME] = LAYOUT_voyager(
     KC_ESC,         _______,        KC_GRV,         KC_HOME,        KC_END,         _______,               _______,        KC_PGUP,        KC_PGDN,        _______,        _______,         _______,
@@ -143,14 +157,27 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
            {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
         {140, 255, 64},  {140, 255, 64}
     },
-    [_BASEFI] = {
+    // [_BASEFI] = {
+    //     {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
+    //     {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
+    //     {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 255},  {140, 255, 64},
+    //     {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
+    //                                                                              {140, 255, 64},   {140, 255, 64},
+
+    //        {140, 255, 64},  {140, 255, 64},   {180, 255, 104},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+    //        {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+    //        {140, 255, 64},  {140, 255, 255},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+    //        {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+    //     {140, 255, 64},  {140, 255, 64}
+    // },
+    [_BASEL] = {
         {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
         {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
         {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 255},  {140, 255, 64},
         {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},   {140, 255, 64},
                                                                                  {140, 255, 64},   {140, 255, 64},
 
-           {140, 255, 64},  {140, 255, 64},   {180, 255, 104},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
+           {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {255, 180, 104},  {140, 255, 64},  {140, 255, 64},
            {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
            {140, 255, 64},  {140, 255, 255},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
            {140, 255, 64},  {140, 255, 64},   {140, 255, 64},  {140, 255, 64},  {140, 255, 64},  {140, 255, 64},
@@ -280,6 +307,9 @@ bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
         case KC_A ... KC_Z:
+        case CADIA:
+        case CODIA:
+        case CARNG:
         case KC_MINS:
         case FI_MINS:
             add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
@@ -297,3 +327,42 @@ bool caps_word_press_user(uint16_t keycode) {
             return false; // Deactivate Caps Word.
     }
 }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (IS_LAYER_ON(_BASEL)) {
+        if (!process_caps_word(keycode, record)) {
+            return false;
+        }
+
+        switch (keycode) {
+            case CADIA:
+                if (record->event.pressed) {
+                    if (get_mods() & MOD_MASK_SHIFT) {
+                        SEND_STRING(SS_TAP(X_SCRL) "A\"" SS_DOWN(X_LSFT));
+                    } else {
+                        SEND_STRING(SS_TAP(X_SCRL) "a\"");
+                    }
+                }
+                return false;
+            case CODIA:
+                if (record->event.pressed) {
+                    if (get_mods() & MOD_MASK_SHIFT) {
+                        SEND_STRING(SS_TAP(X_SCRL) "O\"" SS_DOWN(X_LSFT));
+                    } else {
+                        SEND_STRING(SS_TAP(X_SCRL) "o\"");
+                    }
+                }
+                return false;
+            case CARNG:
+                if (record->event.pressed) {
+                    if (get_mods() & MOD_MASK_SHIFT) {
+                        SEND_STRING(SS_TAP(X_SCRL) "A*" SS_DOWN(X_LSFT));
+                    } else {
+                        SEND_STRING(SS_TAP(X_SCRL) "a*");
+                    }
+                }
+                return false;
+        }
+    }
+    return true;
+};
