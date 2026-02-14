@@ -17,11 +17,6 @@ enum planck_layers {
     _EXTRA
 };
 
-#define SLEEP KC_SYSTEM_SLEEP
-#define PREV_TRACK KC_MEDIA_PREV_TRACK
-#define NEXT_TRACK KC_MEDIA_NEXT_TRACK
-#define PAUSE KC_MEDIA_PLAY_PAUSE
-
 enum {
     ADIA_LOWER,
     ADIA_UPPER,
@@ -64,10 +59,10 @@ const uint32_t PROGMEM unicode_map[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_voyager(
-    _______,        KC_CAPS,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      UC_NEXT,        _______,        TG(_BASEL),     _______,         _______,
-    KC_ESC,         KC_Q,           KC_W,           LT(_ADJ, KC_E), KC_R,           KC_T,                  KC_Y,           KC_U,           LT(_ADJ, KC_I), KC_O,           KC_P,            ADIA,
-    KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,                  KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), ODIA,
-    CW_TOGG,        KC_Z,           KC_X,           LT(_EXTRA,KC_C),KC_V,           KC_B,                  KC_N,         LT(_EXTRA, KC_M), KC_COMM,        KC_DOT,         KC_SLSH,         ARING,
+    _______,        KC_CAPS,        COPY,           CUT,            PASTE,          KC_INS,                TG(_GAME),      _______,        _______,        TG(_BASEL),     _______,         _______,
+    KC_ESC,         KC_Q,           KC_W,           LT(_ADJ, KC_E), KC_R,           KC_T,                  KC_Y,           KC_U,           LT(_ADJ, KC_I), KC_O,           KC_P,            CADIA,
+    KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_S),   LCTL_T(KC_D),   LSFT_T(KC_F),   KC_G,                  KC_H,           LSFT_T(KC_J),   LCTL_T(KC_K),   LALT_T(KC_L),   LGUI_T(KC_SCLN), CODIA,
+    CW_TOGG,        KC_Z,           KC_X,           LT(_EXTRA,KC_C),KC_V,           KC_B,                  KC_N,         LT(_EXTRA, KC_M), KC_COMM,        KC_DOT,         KC_SLSH,         CARNG,
                                                                        RAISE,         KC_SPC,         KC_ENT,      LOWER
   ),
 //   [_BASEFI] = LAYOUT_voyager(
@@ -79,9 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //   ),
   [_BASEL] = LAYOUT_voyager(
     _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         _______,
-    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         CADIA,
-    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         CODIA,
-    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         CARNG,
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         ADIA,
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         ODIA,
+    _______,        _______,        _______,        _______,        _______,        _______,               _______,        _______,        _______,        _______,        _______,         ARING,
                                                                        _______,          _______,        _______,        _______
   ),
   [_GAME] = LAYOUT_voyager(
@@ -329,7 +324,7 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (IS_LAYER_ON(_BASEL)) {
+    if (IS_LAYER_ON(_BASE)) {
         if (!process_caps_word(keycode, record)) {
             return false;
         }
